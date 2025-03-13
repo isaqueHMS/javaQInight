@@ -1,13 +1,15 @@
-package main.java.com.night.java.java.dto;
+package com.night.java.java.dto;
 
 import java.time.LocalDate;
 import java.util.UUID;
+
+import org.apache.logging.log4j.status.StatusData;
 
 public class RegistrationSaveDTO {
     private UUID codigo; // Código único do registro
     private Long codigoEvento; // Código do evento
     private String cpfParticipante; // CPF do participante
-    private Status status; // Status do registro
+    private StatusData status; // Status do registro
     private LocalDate dataRegistro; // Data de registro
 
     // Construtor vazio
@@ -15,7 +17,7 @@ public class RegistrationSaveDTO {
     }
 
     // Construtor com todos os atributos
-    public RegistrationSaveDTO(UUID codigo, Long codigoEvento, String cpfParticipante, Status status,
+    public RegistrationSaveDTO(UUID codigo, Long codigoEvento, String cpfParticipante, StatusData status,
             LocalDate dataRegistro) {
         this.codigo = codigo;
         this.codigoEvento = codigoEvento;
@@ -49,11 +51,11 @@ public class RegistrationSaveDTO {
         this.cpfParticipante = cpfParticipante;
     }
 
-    public Status getStatus() {
+    public StatusData getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(StatusData status) {
         this.status = status;
     }
 
@@ -66,8 +68,8 @@ public class RegistrationSaveDTO {
     }
 
     // Método toModel (converte RegistrationSaveDTO para um modelo Registration)
-    public Registration toModel(Event evento, Participant participante) {
-        Registration registro = new Registration(); // Supondo que Registration tenha um construtor sem argumentos
+    public RegistrationDTO toModel(EventDTO evento) {
+        RegistrationDTO registro = new RegistrationDTO(); // Supondo que Registration tenha um construtor sem argumentos
         registro.setCodigo(this.codigo);
         registro.setEvento(evento); // Associa o evento passado como parâmetro
         registro.setCpfParticipante(this.cpfParticipante);

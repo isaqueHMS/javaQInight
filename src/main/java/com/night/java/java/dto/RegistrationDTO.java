@@ -1,14 +1,16 @@
-package main.java.com.night.java.java.dto;
+package com.night.java.java.dto;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
+import org.apache.logging.log4j.status.StatusData;
+
 public class RegistrationDTO {
     private UUID codigo; // Código único do registro
-    private Event evento; // Evento associado
+    private EventDTO evento; // Evento associado
     private String cpfParticipante; // CPF do participante
     private String nomeParticipante; // Nome do participante
-    private Status status; // Status do registro
+    private StatusData status; // Status do registro
     private LocalDate dataRegistro; // Data de registro
 
     // Construtor vazio
@@ -16,8 +18,8 @@ public class RegistrationDTO {
     }
 
     // Construtor com todos os atributos
-    public RegistrationDTO(UUID codigo, Event evento, String cpfParticipante, String nomeParticipante,
-            Status status, LocalDate dataRegistro) {
+    public RegistrationDTO(UUID codigo, EventDTO evento, String cpfParticipante, String nomeParticipante,
+            StatusData status, LocalDate dataRegistro) {
         this.codigo = codigo;
         this.evento = evento;
         this.cpfParticipante = cpfParticipante;
@@ -35,11 +37,11 @@ public class RegistrationDTO {
         this.codigo = codigo;
     }
 
-    public Event getEvento() {
+    public EventDTO getEvento() {
         return evento;
     }
 
-    public void setEvento(Event evento) {
+    public void setEvento(EventDTO evento) {
         this.evento = evento;
     }
 
@@ -59,11 +61,11 @@ public class RegistrationDTO {
         this.nomeParticipante = nomeParticipante;
     }
 
-    public Status getStatus() {
+    public StatusData getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(StatusData status) {
         this.status = status;
     }
 
@@ -76,7 +78,7 @@ public class RegistrationDTO {
     }
 
     // Método toDTO (converte um modelo Registration para RegistrationDTO)
-    public static RegistrationDTO toDTO(Registration registration) {
+    public static RegistrationDTO toDTO(RegistrationDTO registration) {
         return new RegistrationDTO(
                 registration.getCodigo(),
                 registration.getEvento(),
@@ -87,8 +89,9 @@ public class RegistrationDTO {
     }
 
     // Método toModel (converte RegistrationDTO para um modelo Registration)
-    public Registration toModel() {
-        Registration registration = new Registration(); // Supondo que Registration tenha um construtor sem argumentos
+    public RegistrationDTO toModel() {
+        RegistrationDTO registration = new RegistrationDTO(); // Supondo que Registration tenha um construtor sem
+                                                              // argumentos
         registration.setCodigo(this.codigo);
         registration.setEvento(this.evento);
         registration.setCpfParticipante(this.cpfParticipante);

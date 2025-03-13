@@ -1,4 +1,4 @@
-package main.java.com.night.java.java.dto;
+package com.night.java.java.dto;
 
 public class ParticipantDTO {
     private String cpf; // CPF do participante
@@ -62,7 +62,7 @@ public class ParticipantDTO {
     }
 
     // Método toDTO (converte um modelo Participant para ParticipantDTO)
-    public static ParticipantDTO toDTO(Participant participant) {
+    public static ParticipantDTO toDTO(ParticipantDTO participant) {
         return new ParticipantDTO(
                 participant.getCpf(),
                 participant.getNome(),
@@ -72,8 +72,8 @@ public class ParticipantDTO {
     }
 
     // Método toModel (converte ParticipantDTO para um modelo Participant)
-    public Participant toModel() {
-        Participant participant = new Participant(); // Supondo que Participant tenha um construtor sem argumentos
+    public ParticipantDTO toModel() {
+        ParticipantDTO participant = new ParticipantDTO(); // Supondo que Participant tenha um construtor sem argumentos
         participant.setCpf(this.cpf);
         participant.setNome(this.nome);
         participant.setEmail(this.email);

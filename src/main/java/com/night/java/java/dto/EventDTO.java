@@ -1,4 +1,4 @@
-package main.java.com.night.java.java.dto;
+package com.night.java.java.dto;
 
 import java.time.LocalDate;
 
@@ -75,7 +75,7 @@ public class EventDTO {
     }
 
     // Método toDTO (converte um modelo Event para EventDTO)
-    public static EventDTO toDTO(Event event) {
+    public static EventDTO toDTO(EventDTO event) {
         return new EventDTO(
                 event.getCodigo(),
                 event.getNome(),
@@ -86,8 +86,8 @@ public class EventDTO {
     }
 
     // Método toModel (converte EventDTO para um modelo Event)
-    public Event toModel() {
-        Event event = new Event(); // Supondo que Event tenha um construtor sem argumentos
+    public EventDTO toModel() {
+        EventDTO event = new EventDTO(); // Supondo que Event tenha um construtor sem argumentos
         event.setCodigo(this.codigo);
         event.setNome(this.nome);
         event.setDescricao(this.descricao);
