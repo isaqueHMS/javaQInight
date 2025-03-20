@@ -1,5 +1,6 @@
 package com.night.java.java.service;
 
+import com.night.java.java.dto.ParticipantDTO;
 import com.night.java.java.model.Participant;
 import com.night.java.java.repository.ParticipantRepository;
 import java.util.List;
@@ -35,5 +36,17 @@ public class ParticipantService {
         Optional<Participant> participant = participantRepository.findByName(name);
         participant.ifPresent(participantRepository::delete);
         return participant;
+    }
+
+
+    public Object save(ParticipantDTO participantDTO) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    }
+
+
+    public ParticipantDTO register(ParticipantDTO participantDTO) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'register'");
     }
 }

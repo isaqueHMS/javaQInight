@@ -1,57 +1,29 @@
 package com.night.java.java.controller;
 
 import com.night.java.java.dto.ParticipantDTO;
-import com.night.java.java.model.Participant;
-import com.night.java.java.service.ParticipantService;
+import com.night.java.java.dto.RegistrationDTO;
+import com.night.java.java.service.RegistrationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 @RestController
-@RequestMapping("/api/participants")
+@RequestMapping("/api/registrations") // Alterado de "/api/participants" para "/api/registrations"
 public class RegistrationController {
 
-    private final ParticipantService participantService;
+    private final RegistrationService registrationService;
 
-  
-    public RegistrationController(ParticipantService participantService) {
-        this.participantService = participantService;
+    public RegistrationController(RegistrationService registrationService) {
+        this.registrationService = registrationService;
     }
 
- 
     @PostMapping
-    public ResponseEntity<ParticipantDTO> register(@RequestBody ParticipantDTO participantDTO) {
-        Participant participant = participantDTO.toModel();
-        Participant savedParticipant = participantService.registerOrUpdate(participant);
-        return ResponseEntity.ok(ParticipantDTO.toDTO(savedParticipant));
+    public ResponseEntity<RegistrationDTO> register(@RequestBody ParticipantDTO participantDTO) {
+        // Lógica para registrar uma inscrição usando participantDTO
+        // Aqui você provavelmente converte participantDTO para Registration e chama o
+        // serviço
+        RegistrationDTO registration = registrationService.register(participantDTO); // Suposição
+        return ResponseEntity.ok(registration);
     }
 
-
-    @GetMapping
-    public ResponseEntity<List<ParticipantDTO>> findAll() {
-        List<ParticipantDTO> participants = participantService.findAll()
-                .stream()
-                .map(ParticipantDTO::toDTO)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(participants);
-    }
-
-   
-    @GetMapping("/cpf/{cpf}")
-    public ResponseEntity<ParticipantDTO> findByCpf(@PathVariable String cpf) {
-        Optional<Participant> participant = participantService.findByCpf(cpf);
-        return participant.map(p -> ResponseEntity.ok(ParticipantDTO.toDTO(p)))
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    
-    @DeleteMapping("/name/{name}")
-    public ResponseEntity<ParticipantDTO> removeByName(@PathVariable String name) {
-        Optional<Participant> participant = participantService.removeByName(name);
-        return participant.map(p -> ResponseEntity.ok(ParticipantDTO.toDTO(p)))
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
+    // Outros métodos, se houver
 }

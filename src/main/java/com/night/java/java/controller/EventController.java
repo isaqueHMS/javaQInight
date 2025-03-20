@@ -21,7 +21,6 @@ public class EventController {
         this.eventService = eventService;
     }
 
-   
     @PostMapping
     public ResponseEntity<EventDTO> register(@RequestBody EventDTO eventDTO) {
         Event event = eventDTO.toModel();
@@ -29,7 +28,6 @@ public class EventController {
         return ResponseEntity.ok(EventDTO.toDTO(savedEvent));
     }
 
-  
     @GetMapping
     public ResponseEntity<List<EventDTO>> findAll() {
         List<EventDTO> events = eventService.findAll()
@@ -39,7 +37,6 @@ public class EventController {
         return ResponseEntity.ok(events);
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<EventDTO> findById(@PathVariable Long id) {
         Optional<Event> event = eventService.findById(id);
@@ -47,7 +44,6 @@ public class EventController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    
     @DeleteMapping("/name/{name}")
     public ResponseEntity<EventDTO> removeByName(@PathVariable String name) {
         Optional<Event> event = eventService.removeByName(name);
@@ -55,28 +51,26 @@ public class EventController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-   
-    // @GetMapping("/tasks/start-after/{date}")
-    // public ResponseEntity<List<EventDTO>> searchTasksByStartAfterDate(@PathVariable String date) {
-    //     LocalDate localDate = LocalDate.parse(date);
-    //     List<EventDTO> events = eventService.searchTasksByStartAfterDate(localDate)
-    //             .stream()
-    //             .map(EventDTO::toDTO)
-    //             .collect(Collectors.toList());
-    //     return ResponseEntity.ok(events);
-    // }
+    @GetMapping("/tasks/start-after/{date}")
+    public ResponseEntity<List<EventDTO>> searchTasksByStartAfterDate(@PathVariable String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        List<EventDTO> events = eventService.searchTasksByStartAfterDate(localDate)
+                .stream()
+                .map(EventDTO::toDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(events);
+    }
 
-   
-    // @GetMapping("/between")
-    // public ResponseEntity<List<EventDTO>> searchEventsHappeningBetween(
-    //         @RequestParam("startDate") String startDate,
-    //         @RequestParam("endDate") String endDate) {
-    //     LocalDate start = LocalDate.parse(startDate);
-    //     LocalDate end = LocalDate.parse(endDate);
-    //     List<EventDTO> events = eventService.searchEventsHappeningBetween(start, end)
-    //             .stream()
-    //             .map(EventDTO::toDTO)
-    //             .collect(Collectors.toList());
-    //     return ResponseEntity.ok(events);
-    // }
+    @GetMapping("/between")
+    public ResponseEntity<List<EventDTO>> searchEventsHappeningBetween(
+            @RequestParam("startDate") String startDate,
+            @RequestParam("endDate") String endDate) {
+        LocalDate start = LocalDate.parse(startDate);
+        LocalDate end = LocalDate.parse(endDate);
+        List<EventDTO> events = eventService.searchEventsHappeningBetween(start, end)
+                .stream()
+                .map(EventDTO::toDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(events);
+    }
 }

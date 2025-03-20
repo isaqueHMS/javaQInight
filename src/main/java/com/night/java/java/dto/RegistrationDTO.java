@@ -5,18 +5,16 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class RegistrationDTO {
-    private UUID codigo; 
+    private UUID codigo;
     private EventDTO evento;
     private String cpfParticipante;
-    private String nomeParticipante; 
+    private String nomeParticipante;
     private String status;
-    private LocalDate dataRegistro; 
-
+    private LocalDate dataRegistro;
 
     public RegistrationDTO() {
     }
 
-   
     public RegistrationDTO(UUID codigo, EventDTO evento, String cpfParticipante, String nomeParticipante,
             String status, LocalDate dataRegistro) {
         this.codigo = codigo;
@@ -27,7 +25,6 @@ public class RegistrationDTO {
         this.dataRegistro = dataRegistro;
     }
 
-  
     public UUID getCodigo() {
         return codigo;
     }
@@ -76,7 +73,6 @@ public class RegistrationDTO {
         this.dataRegistro = dataRegistro;
     }
 
-   
     public static RegistrationDTO toDTO(Registration registration) {
         if (registration == null) {
             return null;
@@ -90,12 +86,10 @@ public class RegistrationDTO {
                 registration.getRegistrationDate());
     }
 
-  
     public Registration toModel() {
         Registration registration = new Registration();
         registration.setCode(this.codigo);
         registration.setEvent(this.evento != null ? this.evento.toModel() : null);
-     
         registration.setStatus(this.status);
         registration.setRegistrationDate(this.dataRegistro);
         return registration;

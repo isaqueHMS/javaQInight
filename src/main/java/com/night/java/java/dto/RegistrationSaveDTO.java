@@ -1,21 +1,21 @@
 package com.night.java.java.dto;
 
+import com.night.java.java.model.Event;
+import com.night.java.java.model.Participant;
 import com.night.java.java.model.Registration;
 import java.time.LocalDate;
 import java.util.UUID;
 
 public class RegistrationSaveDTO {
-    private UUID codigo; 
-    private Long codigoEvento; 
-    private String cpfParticipante; 
-    private String status; 
-    private LocalDate dataRegistro; 
+    private UUID codigo;
+    private Long codigoEvento;
+    private String cpfParticipante;
+    private String status;
+    private LocalDate dataRegistro;
 
-  
     public RegistrationSaveDTO() {
     }
 
- 
     public RegistrationSaveDTO(UUID codigo, Long codigoEvento, String cpfParticipante, String status,
             LocalDate dataRegistro) {
         this.codigo = codigo;
@@ -25,7 +25,6 @@ public class RegistrationSaveDTO {
         this.dataRegistro = dataRegistro;
     }
 
-    
     public UUID getCodigo() {
         return codigo;
     }
@@ -66,11 +65,24 @@ public class RegistrationSaveDTO {
         this.dataRegistro = dataRegistro;
     }
 
-  
     public Registration toModel() {
         Registration registration = new Registration();
         registration.setCode(this.codigo);
-        
+
+        // Configurar o Event manualmente
+        if (this.codigoEvento != null) {
+            Event event = new Event();
+            event.setCode(this.codigoEvento);
+            registration.setEvent(event);
+        }
+
+        // Configurar o Participant manualmente
+        if (this.cpfParticipante != null) {
+            Participant participant = new Participant();
+            participant.setCpf(this.cpfParticipante);
+            registration.setParticipant(participant);
+        }
+
         registration.setStatus(this.status);
         registration.setRegistrationDate(this.dataRegistro);
         return registration;
