@@ -21,11 +21,11 @@ public class Event {
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Registration> registrations;
 
-    // Construtor vazio (necessário para JPA)
+    
     public Event() {
     }
 
-    // Construtor com todos os atributos
+    
     public Event(Long code, String name, String description, LocalDate startDate, LocalDate endDate, String location,
             List<Registration> registrations) {
         this.code = code;
@@ -37,7 +37,7 @@ public class Event {
         this.registrations = registrations;
     }
 
-    // Getters e Setters
+    
     public Long getCode() {
         return code;
     }

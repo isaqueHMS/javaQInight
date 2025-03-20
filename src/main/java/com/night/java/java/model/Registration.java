@@ -3,8 +3,6 @@ package com.night.java.java.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import org.apache.logging.log4j.status.StatusData;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -21,15 +19,15 @@ public class Registration {
     @JoinColumn(name = "participant_cpf")
     private Participant participant;
 
-    private StatusData status;
+    private String status; 
     private LocalDate registrationDate;
 
-    // Construtor vazio (necessário para JPA)
+ 
     public Registration() {
     }
 
-    // Construtor com todos os atributos
-    public Registration(UUID code, Event event, Participant participant, StatusData status,
+   
+    public Registration(UUID code, Event event, Participant participant, String status,
             LocalDate registrationDate) {
         this.code = code;
         this.event = event;
@@ -38,7 +36,7 @@ public class Registration {
         this.registrationDate = registrationDate;
     }
 
-    // Getters e Setters
+   
     public UUID getCode() {
         return code;
     }
@@ -63,11 +61,11 @@ public class Registration {
         this.participant = participant;
     }
 
-    public StatusData getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(StatusData status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

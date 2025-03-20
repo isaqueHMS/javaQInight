@@ -2,19 +2,21 @@ package com.night.java.java.dto;
 
 import java.time.LocalDate;
 
-public class EventDTO {
-    private Long codigo; // Código do evento
-    private String nome; // Nome do evento
-    private String descricao; // Descrição do evento
-    private LocalDate dataInicio; // Data de início
-    private LocalDate dataFim; // Data de término
-    private String localizacao; // Localização
+import com.night.java.java.model.Event; 
 
-    // Construtor vazio
+public class EventDTO {
+    private Long codigo;
+    private String nome;
+    private String descricao;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
+    private String localizacao;
+
+   
     public EventDTO() {
     }
 
-    // Construtor com todos os atributos
+  
     public EventDTO(Long codigo, String nome, String descricao, LocalDate dataInicio,
             LocalDate dataFim, String localizacao) {
         this.codigo = codigo;
@@ -25,7 +27,7 @@ public class EventDTO {
         this.localizacao = localizacao;
     }
 
-    // Getters e Setters
+   
     public Long getCodigo() {
         return codigo;
     }
@@ -74,26 +76,30 @@ public class EventDTO {
         this.localizacao = localizacao;
     }
 
-    // Método toDTO (converte um modelo Event para EventDTO)
-    public static EventDTO toDTO(EventDTO event) {
+    public static EventDTO toDTO(Event event) {
+        if (event == null) {
+            return null;
+        }
+
         return new EventDTO(
-                event.getCodigo(),
-                event.getNome(),
-                event.getDescricao(),
-                event.getDataInicio(),
-                event.getDataFim(),
-                event.getLocalizacao());
+                event.getCode(),
+                event.getName(),
+                event.getDescription(),
+                event.getStartDate(),
+                event.getEndDate(),
+                event.getLocation());
     }
 
-    // Método toModel (converte EventDTO para um modelo Event)
-    public EventDTO toModel() {
-        EventDTO event = new EventDTO(); // Supondo que Event tenha um construtor sem argumentos
-        event.setCodigo(this.codigo);
-        event.setNome(this.nome);
-        event.setDescricao(this.descricao);
-        event.setDataInicio(this.dataInicio);
-        event.setDataFim(this.dataFim);
-        event.setLocalizacao(this.localizacao);
-        return event;
+    public Event toModel() {
+        return new Event(
+                this.codigo, 
+                this.nome, 
+                this.descricao,
+                this.dataInicio, 
+                this.dataFim, 
+                this.localizacao, 
+                null 
+        );
     }
+
 }

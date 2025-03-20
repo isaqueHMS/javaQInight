@@ -1,25 +1,24 @@
 package com.night.java.java.dto;
 
+import com.night.java.java.model.Registration;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import org.apache.logging.log4j.status.StatusData;
-
 public class RegistrationDTO {
-    private UUID codigo; // Código único do registro
-    private EventDTO evento; // Evento associado
-    private String cpfParticipante; // CPF do participante
-    private String nomeParticipante; // Nome do participante
-    private StatusData status; // Status do registro
-    private LocalDate dataRegistro; // Data de registro
+    private UUID codigo; 
+    private EventDTO evento;
+    private String cpfParticipante;
+    private String nomeParticipante; 
+    private String status;
+    private LocalDate dataRegistro; 
 
-    // Construtor vazio
+
     public RegistrationDTO() {
     }
 
-    // Construtor com todos os atributos
+   
     public RegistrationDTO(UUID codigo, EventDTO evento, String cpfParticipante, String nomeParticipante,
-            StatusData status, LocalDate dataRegistro) {
+            String status, LocalDate dataRegistro) {
         this.codigo = codigo;
         this.evento = evento;
         this.cpfParticipante = cpfParticipante;
@@ -28,7 +27,7 @@ public class RegistrationDTO {
         this.dataRegistro = dataRegistro;
     }
 
-    // Getters e Setters
+  
     public UUID getCodigo() {
         return codigo;
     }
@@ -61,11 +60,11 @@ public class RegistrationDTO {
         this.nomeParticipante = nomeParticipante;
     }
 
-    public StatusData getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(StatusData status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -77,27 +76,28 @@ public class RegistrationDTO {
         this.dataRegistro = dataRegistro;
     }
 
-    // Método toDTO (converte um modelo Registration para RegistrationDTO)
-    public static RegistrationDTO toDTO(RegistrationDTO registration) {
+   
+    public static RegistrationDTO toDTO(Registration registration) {
+        if (registration == null) {
+            return null;
+        }
         return new RegistrationDTO(
-                registration.getCodigo(),
-                registration.getEvento(),
-                registration.getCpfParticipante(),
-                registration.getNomeParticipante(),
+                registration.getCode(),
+                EventDTO.toDTO(registration.getEvent()),
+                registration.getParticipant() != null ? registration.getParticipant().getCpf() : null,
+                registration.getParticipant() != null ? registration.getParticipant().getNome() : null,
                 registration.getStatus(),
-                registration.getDataRegistro());
+                registration.getRegistrationDate());
     }
 
-    // Método toModel (converte RegistrationDTO para um modelo Registration)
-    public RegistrationDTO toModel() {
-        RegistrationDTO registration = new RegistrationDTO(); // Supondo que Registration tenha um construtor sem
-                                                              // argumentos
-        registration.setCodigo(this.codigo);
-        registration.setEvento(this.evento);
-        registration.setCpfParticipante(this.cpfParticipante);
-        registration.setNomeParticipante(this.nomeParticipante);
+  
+    public Registration toModel() {
+        Registration registration = new Registration();
+        registration.setCode(this.codigo);
+        registration.setEvent(this.evento != null ? this.evento.toModel() : null);
+     
         registration.setStatus(this.status);
-        registration.setDataRegistro(this.dataRegistro);
+        registration.setRegistrationDate(this.dataRegistro);
         return registration;
     }
 }

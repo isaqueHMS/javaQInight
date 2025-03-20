@@ -1,7 +1,5 @@
 package com.night.java.java.model;
 
-import java.util.List;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -9,43 +7,48 @@ public class Participant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cpf;
+    private Long id;
 
-    private String name;
+    private String cpf;
+    private String nome;
     private String email;
-    private String phone;
+    private String telefone;
 
-    @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL)
-    private List<Registration> registrations;
-
-    // Construtor vazio (necessário para JPA)
+  
     public Participant() {
     }
 
-    // Construtor com todos os atributos
-    public Participant(Long cpf, String name, String email, String phone, List<Registration> registrations) {
+  
+    public Participant(String cpf, String nome, String email, String telefone) {
         this.cpf = cpf;
-        this.name = name;
+        this.nome = nome;
         this.email = email;
-        this.phone = phone;
-        this.registrations = registrations;
+        this.telefone = telefone;
     }
 
-    // Getters e Setters
-    public Long getCpf() {
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -56,19 +59,11 @@ public class Participant {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public List<Registration> getRegistrations() {
-        return registrations;
-    }
-
-    public void setRegistrations(List<Registration> registrations) {
-        this.registrations = registrations;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 }

@@ -1,23 +1,22 @@
 package com.night.java.java.dto;
 
+import com.night.java.java.model.Registration;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import org.apache.logging.log4j.status.StatusData;
-
 public class RegistrationSaveDTO {
-    private UUID codigo; // Código único do registro
-    private Long codigoEvento; // Código do evento
-    private String cpfParticipante; // CPF do participante
-    private StatusData status; // Status do registro
-    private LocalDate dataRegistro; // Data de registro
+    private UUID codigo; 
+    private Long codigoEvento; 
+    private String cpfParticipante; 
+    private String status; 
+    private LocalDate dataRegistro; 
 
-    // Construtor vazio
+  
     public RegistrationSaveDTO() {
     }
 
-    // Construtor com todos os atributos
-    public RegistrationSaveDTO(UUID codigo, Long codigoEvento, String cpfParticipante, StatusData status,
+ 
+    public RegistrationSaveDTO(UUID codigo, Long codigoEvento, String cpfParticipante, String status,
             LocalDate dataRegistro) {
         this.codigo = codigo;
         this.codigoEvento = codigoEvento;
@@ -26,7 +25,7 @@ public class RegistrationSaveDTO {
         this.dataRegistro = dataRegistro;
     }
 
-    // Getters e Setters
+    
     public UUID getCodigo() {
         return codigo;
     }
@@ -51,11 +50,11 @@ public class RegistrationSaveDTO {
         this.cpfParticipante = cpfParticipante;
     }
 
-    public StatusData getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(StatusData status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -67,14 +66,13 @@ public class RegistrationSaveDTO {
         this.dataRegistro = dataRegistro;
     }
 
-    // Método toModel (converte RegistrationSaveDTO para um modelo Registration)
-    public RegistrationDTO toModel(EventDTO evento) {
-        RegistrationDTO registro = new RegistrationDTO(); // Supondo que Registration tenha um construtor sem argumentos
-        registro.setCodigo(this.codigo);
-        registro.setEvento(evento); // Associa o evento passado como parâmetro
-        registro.setCpfParticipante(this.cpfParticipante);
-        registro.setStatus(this.status);
-        registro.setDataRegistro(this.dataRegistro);
-        return registro;
+  
+    public Registration toModel() {
+        Registration registration = new Registration();
+        registration.setCode(this.codigo);
+        
+        registration.setStatus(this.status);
+        registration.setRegistrationDate(this.dataRegistro);
+        return registration;
     }
 }
