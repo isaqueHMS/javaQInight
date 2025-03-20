@@ -13,6 +13,6 @@ public interface RegistrationRepository extends JpaRepository<Registration, UUID
 
 List<Registration> findByStatus(String status);
 
-
-    Optional<Registration> verifyRegistrationEventCode(String eventCode);
+@QueryBy
+  
 }

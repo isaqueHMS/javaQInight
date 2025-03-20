@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class EventService {
 
 
@@ -38,12 +41,12 @@ public class EventService {
         return event;
     }
 
-    public List<Event> searchTasksByStartAfterDate(LocalDate date) {
-        return eventRepository.searchEventsHappeningBetween(date, LocalDate.MAX);
-    }
+    // public List<Event> searchTasksByStartAfterDate(LocalDate date) {
+    //     return eventRepository.searchTasksByStartAfterDate(date, LocalDate.MAX);
+    // }
 
 
-    public List<Event> searchEventsHappeningBetween(LocalDate startDate, LocalDate endDate) {
-        return eventRepository.searchEventsHappeningBetween(startDate, endDate);
-    }
+    // public List<Event> searchEventsHappeningBetween(LocalDate startDate, LocalDate endDate) {
+    //     return eventRepository.searchEventsHappeningBetween(startDate, endDate);
+    // }
 }

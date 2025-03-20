@@ -85,7 +85,7 @@ public class RegistrationDTO {
                 registration.getCode(),
                 EventDTO.toDTO(registration.getEvent()),
                 registration.getParticipant() != null ? registration.getParticipant().getCpf() : null,
-                registration.getParticipant() != null ? registration.getParticipant().getNome() : null,
+                registration.getParticipant() != null ? registration.getParticipant().getName() : null,
                 registration.getStatus(),
                 registration.getRegistrationDate());
     }

@@ -58,7 +58,7 @@ public class ParticipantDTO {
         }
         return new ParticipantDTO(
                 participant.getCpf(),
-                participant.getNome(),
+                participant.getName(),
                 participant.getEmail(),
                 participant.getTelefone());
     }
@@ -67,7 +67,7 @@ public class ParticipantDTO {
     public Participant toModel() {
         Participant participant = new Participant();
         participant.setCpf(this.cpf);
-        participant.setNome(this.nome);
+        participant.setName(this.nome);
         participant.setEmail(this.email);
         participant.setTelefone(this.telefone);
         return participant;

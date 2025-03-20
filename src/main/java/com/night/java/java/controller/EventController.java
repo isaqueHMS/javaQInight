@@ -56,27 +56,27 @@ public class EventController {
     }
 
    
-    @GetMapping("/tasks/start-after/{date}")
-    public ResponseEntity<List<EventDTO>> searchTasksByStartAfterDate(@PathVariable String date) {
-        LocalDate localDate = LocalDate.parse(date);
-        List<EventDTO> events = eventService.searchTasksByStartAfterDate(localDate)
-                .stream()
-                .map(EventDTO::toDTO)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(events);
-    }
+    // @GetMapping("/tasks/start-after/{date}")
+    // public ResponseEntity<List<EventDTO>> searchTasksByStartAfterDate(@PathVariable String date) {
+    //     LocalDate localDate = LocalDate.parse(date);
+    //     List<EventDTO> events = eventService.searchTasksByStartAfterDate(localDate)
+    //             .stream()
+    //             .map(EventDTO::toDTO)
+    //             .collect(Collectors.toList());
+    //     return ResponseEntity.ok(events);
+    // }
 
    
-    @GetMapping("/between")
-    public ResponseEntity<List<EventDTO>> searchEventsHappeningBetween(
-            @RequestParam("startDate") String startDate,
-            @RequestParam("endDate") String endDate) {
-        LocalDate start = LocalDate.parse(startDate);
-        LocalDate end = LocalDate.parse(endDate);
-        List<EventDTO> events = eventService.searchEventsHappeningBetween(start, end)
-                .stream()
-                .map(EventDTO::toDTO)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(events);
-    }
+    // @GetMapping("/between")
+    // public ResponseEntity<List<EventDTO>> searchEventsHappeningBetween(
+    //         @RequestParam("startDate") String startDate,
+    //         @RequestParam("endDate") String endDate) {
+    //     LocalDate start = LocalDate.parse(startDate);
+    //     LocalDate end = LocalDate.parse(endDate);
+    //     List<EventDTO> events = eventService.searchEventsHappeningBetween(start, end)
+    //             .stream()
+    //             .map(EventDTO::toDTO)
+    //             .collect(Collectors.toList());
+    //     return ResponseEntity.ok(events);
+    // }
 }

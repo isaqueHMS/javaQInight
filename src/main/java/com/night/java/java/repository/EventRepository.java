@@ -13,5 +13,5 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
 
   
-    List<Event> searchEventsHappeningBetween(LocalDate startDate, LocalDate endDate);
+    // List<Event> searchEventsHappeningBetween(LocalDate startDate, LocalDate endDate);
 }

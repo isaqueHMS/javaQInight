@@ -10,7 +10,7 @@ public class Participant {
     private Long id;
 
     private String cpf;
-    private String nome;
+    private String name;
     private String email;
     private String telefone;
 
@@ -19,9 +19,9 @@ public class Participant {
     }
 
   
-    public Participant(String cpf, String nome, String email, String telefone) {
+    public Participant(String cpf, String name, String email, String telefone) {
         this.cpf = cpf;
-        this.nome = nome;
+        this.name = name;
         this.email = email;
         this.telefone = telefone;
     }
@@ -43,12 +43,12 @@ public class Participant {
         this.cpf = cpf;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
