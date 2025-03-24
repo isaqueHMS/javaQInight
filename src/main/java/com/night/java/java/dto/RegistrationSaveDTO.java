@@ -69,14 +69,12 @@ public class RegistrationSaveDTO {
         Registration registration = new Registration();
         registration.setCode(this.codigo);
 
-        // Configurar o Event manualmente
         if (this.codigoEvento != null) {
             Event event = new Event();
             event.setCode(this.codigoEvento);
             registration.setEvent(event);
         }
-
-        // Configurar o Participant manualmente
+        
         if (this.cpfParticipante != null) {
             Participant participant = new Participant();
             participant.setCpf(this.cpfParticipante);

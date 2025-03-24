@@ -17,9 +17,8 @@ public class ParticipantController {
 
     @PostMapping
     public ResponseEntity<ParticipantDTO> register(@RequestBody ParticipantDTO participantDTO) {
-        ParticipantDTO savedParticipant = participantService.register(participantDTO); // Suposição
+        ParticipantDTO savedParticipant = participantService.register(participantDTO);
         return ResponseEntity.ok(savedParticipant);
     }
 
-    // Outros métodos, se houver
 }
